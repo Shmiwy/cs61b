@@ -57,6 +57,7 @@ public class NBody {
 
 			time += dt;
         }
+        StdDraw.show();
         StdOut.printf("%d\n", planets.length);
         StdOut.printf("%.2e\n", uniRadius);
         for (int i = 0; i < planets.length; i++) {
