@@ -48,7 +48,7 @@ public class Planet {
     //** takes in a planet and returns the force exerted on this planet by the given planet in Y directions*/
     public double calcForceExertedByY(Planet p) {
         double sin = (p.yyPos - this.yyPos) / this.calcDistance(p);
-        return this.calcForceExertedBy(p) * sin;  
+        return this.calcForceExertedBy(p) * sin;
     }
 
     //** take in an array of Planets, return net X force exerted upon the current Planet */
@@ -80,7 +80,13 @@ public class Planet {
         this.xxVel += dt * accelerationOnX;
         this.yyVel += dt * accelerationOnY;
         this.xxPos += dt * this.xxVel;
-        this.yyPos += dt * this.yyVel; 
-
+        this.yyPos += dt * this.yyVel;
     }
+
+    /** draw this planet at its appropriate position */
+     public void draw() {
+         String filename = "images/" + this.imgFileName;
+         StdDraw.picture(this.xxPos, this.yyPos, filename);
+         StdDraw.show();
+     }
 }
