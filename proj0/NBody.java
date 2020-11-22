@@ -57,6 +57,7 @@ public class NBody {
 
 			time += dt;
         }
+        /** print out the final state of the universe */
         StdDraw.show();
         StdOut.printf("%d\n", planets.length);
         StdOut.printf("%.2e\n", uniRadius);
