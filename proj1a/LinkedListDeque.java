@@ -47,6 +47,7 @@ public class LinkedListDeque<T> {
         ItemNode p = sentinel.rest;
         while (sentinel != p) {
             System.out.print(p.item + " ");
+            p = p.rest;
         }
     }
     /** Removes and returns the item at the front of the deque */
