@@ -88,7 +88,7 @@ public class ArrayDeque<T> {
     }
     /** try to shrink the size of the array */
     private void tryShrinkSize() {
-        while (size() >= MIN_LEN_TO_SHRINK && usage < LEAST_USAGE) {
+        while (array.length >= MIN_LEN_TO_SHRINK && usage < LEAST_USAGE) {
             resize((int) (array.length / 2));
         }
 
@@ -130,4 +130,5 @@ public class ArrayDeque<T> {
             return array[index - (array.length - first)];
         }
     }
+
 }
