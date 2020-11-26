@@ -22,11 +22,7 @@ public class ArrayDeque<T> {
     }
     /** return true if the array is full */
     private boolean isFull() {
-        if (size > 0 && tail == first) {
-            return  true;
-        } else {
-            return false;
-        }
+        return (size > 0 && tail == first);
     }
     /** return one gain index after the current position */
     private int onePlus(int index) {
@@ -41,9 +37,9 @@ public class ArrayDeque<T> {
     }
     /** resize the array */
     private void resize(int capacity) {
-        T[] newArray = (T[])new Object[capacity];
+        T[] newArray = (T[]) new Object[capacity];
         int p = first;
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; i++) {
             newArray[i] = array[p];
             p = onePlus(p);
         }
@@ -75,11 +71,7 @@ public class ArrayDeque<T> {
     }
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (size == 0);
     }
     /** Returns the number of items in the deque. */
     public int size() {
@@ -87,17 +79,17 @@ public class ArrayDeque<T> {
     }
 
     /** Prints the items in the deque from first to las */
-    public void printDeque(){
-        int p=first;
-        while(p!=tail){
+    public void printDeque() {
+        int p = first;
+        while (p != tail) {
             System.out.print(array[p] + " ");
             p = onePlus(p);
         }
     }
     /** try to shrink the size of the array */
     private void tryShrinkSize() {
-        while (size()>=MIN_LEN_TO_SHRINK && usage < LEAST_USAGE) {
-            resize((int)(array.length / 2));
+        while (size() >= MIN_LEN_TO_SHRINK && usage < LEAST_USAGE) {
+            resize((int) (array.length / 2));
         }
 
     }
@@ -138,16 +130,4 @@ public class ArrayDeque<T> {
             return array[index - (array.length - first)];
         }
     }
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> a=new ArrayDeque<Integer>();
-//
-//        for (int i=0; i<111; i++) {
-//            a.addLast(i);
-//        }
-//        for (int i=0; i<109; i++)
-//            a.removeLast();
-//        a.printDeque();
-//
-//
-//    }
 }

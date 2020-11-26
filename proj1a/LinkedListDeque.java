@@ -1,9 +1,9 @@
 public class LinkedListDeque<T> {
     private class ItemNode {
-        public T item;
-        public ItemNode rest;
-        public ItemNode last;
-        public ItemNode(T i, ItemNode r, ItemNode l) {
+        private T item;
+        private ItemNode rest;
+        private ItemNode last;
+        private ItemNode(T i, ItemNode r, ItemNode l) {
             this.item = i;
             this.rest = r;
             this.last = l;
@@ -13,7 +13,7 @@ public class LinkedListDeque<T> {
     private int size;
     /** Creates an empty linked list deque. */
     public LinkedListDeque() {
-        sentinel = new ItemNode((T)null,null,null);
+        sentinel = new ItemNode((T) null, null, null);
         size = 0;
         sentinel.last = sentinel;
         sentinel.rest = sentinel;
@@ -32,11 +32,7 @@ public class LinkedListDeque<T> {
     }
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return  (size == 0);
     }
     /** Returns the number of items in the deque. */
     public int size() {
@@ -73,11 +69,11 @@ public class LinkedListDeque<T> {
         return  lastNode.item;
     }
     /** helper of the getRecursive function */
-    public T getRecursiveHelper(int index, int count, ItemNode p) {
+    private T getRecursiveHelper(int index, int count, ItemNode p) {
         if (index == count) {
             return p.item;
         }
-        return getRecursiveHelper(index, count+1, p.rest);
+        return getRecursiveHelper(index, count + 1, p.rest);
     }
     /** Gets the item at the given index using recursion*/
     public T getRecursive(int index) {
@@ -94,16 +90,9 @@ public class LinkedListDeque<T> {
             return null;
         }
         ItemNode p = sentinel.rest;
-        for (int i=0; i<index; i++) {
+        for (int i = 0; i < index; i++) {
             p =  p.rest;
         }
         return  p.item;
     }
-//    public static void main(String[] args) {
-//        LinkedListDeque l = new LinkedListDeque();;
-//        for (int i=0; i<100; i++) {
-//            l.addLast(i);
-//        }
-//        System.out.println(l.getRecursive(34));
-//    }
 }
