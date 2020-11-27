@@ -1,5 +1,6 @@
 public class Palindrome {
-    /** Given a String, return a Deque where the characters appear in the same order as in the String */
+    /** Given a String, return a Deque with characters appear
+     *  in the same order as in the String */
     public Deque<Character> wordToDeque(String word) {
         Deque<Character> deque = new ArrayDeque<Character>();
         for (int i = 0; i < word.length(); i++) {
@@ -26,9 +27,7 @@ public class Palindrome {
         if (deque.size() <= 1) {
             return true;
         } else {
-            char lastItem = deque.removeLast();
-            char firstItem = deque.removeFirst();
-            if (cc.equalChars(lastItem, firstItem) != true) {
+            if (cc.equalChars(deque.removeLast(), deque.removeFirst()) != true) {
                 return false;
             } else {
                 return isisPalindromeHelper(deque, cc);
