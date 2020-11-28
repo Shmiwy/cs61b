@@ -27,7 +27,9 @@ public class Palindrome {
         if (deque.size() <= 1) {
             return true;
         } else {
-            if (cc.equalChars(deque.removeLast(), deque.removeFirst()) != true) {
+            char last = deque.removeLast();
+            char first = deque.removeFirst();
+            if (!cc.equalChars(last,first)) {
                 return false;
             } else {
                 return isisPalindromeHelper(deque, cc);
