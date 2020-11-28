@@ -78,16 +78,14 @@ public class IntList {
      * as an input, returns null.
      */
     public static IntList reverse(IntList A) {
-        IntList p = A;
-        IntList ptr = A;
-        A = null;
-        while (p != null) {
-            p = p.rest;
-            ptr.rest = A;
-            A = ptr;
-            ptr = p;
+        if (null == A || null == A.rest) {
+            return A;
+        } else {
+            IntList reverseRemainList = reverse(A.rest);
+            A.rest.rest = A;
+            A.rest = null;
+            return  reverseRemainList;
         }
-        return A;
     }
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
