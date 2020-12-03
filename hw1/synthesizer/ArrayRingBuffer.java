@@ -9,6 +9,15 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Array for storing the buffer data. */
     private T[] rb;
 
+
+    @Override
+    public int capacity() {
+        return capacity;
+    }
+    @Override
+    public int fillCount() {
+        return fillCount;
+    }
     /**
      * Create a new ArrayRingBuffer with the given capacity.
      */
@@ -63,7 +72,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
             throw new RuntimeException("Ring Buffer Underflow");
         }
         T dequeueItem = rb[first];
+        rb[first] = null;
         first = onePlus(first);
+        this.fillCount -= 1;
         return dequeueItem;
     }
 
@@ -72,6 +83,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      */
     @Override
     public T peek() {
+        if (isEmpty()) {
+            throw new RuntimeException("Ring buffer underflow");
+        }
         return rb[first];
     }
 
@@ -88,12 +102,12 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         }
 
         public boolean hasNext() {
-            return wizPos < fillCount;
+            return wizPos < fillCount();
         }
 
         public T next() {
             T returnItem = rb[wizPos];
-            wizPos += 1;
+            wizPos =onePlus(wizPos);
             return returnItem;
         }
     }
