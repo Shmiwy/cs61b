@@ -52,14 +52,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         last = onePlus(last);
         this.fillCount += 1;
     }
-    @Override
-    public boolean isEmpty() {
-        return fillCount() == 0;
-    }
-    @Override
-    public boolean isFull() {
-        return fillCount() == capacity();
-    }
 
     /**
      * Dequeue oldest item in the ring buffer. If the buffer is empty, then
