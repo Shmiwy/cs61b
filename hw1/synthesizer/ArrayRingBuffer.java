@@ -1,4 +1,5 @@
 package synthesizer;
+
 import java.util.Iterator;
 
 public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
@@ -61,8 +62,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         this.fillCount += 1;
     }
     @Override
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return fillCount() == 0;
     }
     @Override
@@ -105,18 +105,22 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
     private class ArraySetIterator implements Iterator<T> {
         private int wizPos;
+        private int cout;
 
         public ArraySetIterator() {
-            wizPos = 0;
+            wizPos = first;
+            cout = 0;
+
         }
 
         public boolean hasNext() {
-            return wizPos < fillCount();
+            return cout < fillCount();
         }
 
         public T next() {
             T returnItem = rb[wizPos];
-            wizPos =onePlus(wizPos);
+            wizPos = onePlus(wizPos);
+            cout += 1;
             return returnItem;
         }
     }
