@@ -9,11 +9,7 @@ public interface BoundedQueue<T> extends Iterable<T>{
     T dequeue();        // delete and return item from the front
     T peek();           // return (but do not delete) item from the front
     // return ture if the buffer is empty
-    default boolean isEmpty() {
-        return fillCount() == 0;
-    }
+    boolean isEmpty();
     // return true if the buffer is full
-    default boolean isFull() {
-        return  capacity() == fillCount();
-    }
+    boolean isFull();
 }
